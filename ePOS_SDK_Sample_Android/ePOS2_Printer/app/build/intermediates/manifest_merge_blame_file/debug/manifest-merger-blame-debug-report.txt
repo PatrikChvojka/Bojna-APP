@@ -1,0 +1,138 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.epson.epos2_printer"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:5-66
+11-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:5-75
+12-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:22-73
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:5-78
+13-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:22-76
+14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+14-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:5-80
+14-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:22-78
+15    <uses-permission
+15-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:5-11:57
+16        android:name="android.permission.BLUETOOTH_SCAN"
+16-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:22-70
+17        android:usesPermissionFlags="neverForLocation" />
+17-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:11:9-55
+18    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+18-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:5-75
+18-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:22-73
+19
+20    <!-- Legacy Bluetooth permissions for Android 11 and older -->
+21    <uses-permission
+21-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:5-16:37
+22        android:name="android.permission.BLUETOOTH"
+22-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:22-65
+23        android:maxSdkVersion="30" />
+23-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:16:9-35
+24    <uses-permission
+24-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:5-18:37
+25        android:name="android.permission.BLUETOOTH_ADMIN"
+25-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:22-71
+26        android:maxSdkVersion="30" />
+26-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:18:9-35
+27
+28    <application
+28-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-60:19
+29        android:allowBackup="true"
+29-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:21:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
+31        android:debuggable="true"
+32        android:extractNativeLibs="true"
+33        android:icon="@mipmap/ic_launcher"
+33-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:22:9-43
+34        android:label="@string/app_name"
+34-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:23:9-41
+35        android:networkSecurityConfig="@xml/network_security_config"
+35-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:25:9-69
+36        android:testOnly="true"
+37        android:theme="@style/AppTheme" >
+37-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:24:9-40
+38        <activity android:name="com.epson.epos2_printer.SettingsActivity" />
+38-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:9-54
+38-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:19-51
+39        <activity android:name="com.epson.epos2_printer.HelpActivity" />
+39-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:9-50
+39-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:19-47
+40        <activity android:name="com.epson.epos2_printer.TicketsActivity" />
+40-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:9-53
+40-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:19-50
+41        <activity
+41-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:31:9-53:20
+42            android:name="com.epson.epos2_printer.MainActivity"
+42-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:32:13-41
+43            android:exported="true"
+43-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:35:13-36
+44            android:label="@string/app_title"
+44-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:33:13-46
+45            android:screenOrientation="portrait" >
+45-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:34:13-49
+46            <intent-filter>
+46-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:37:13-43:29
+47                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+47-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:17-90
+47-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:25-87
+48                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+48-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:17-93
+48-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:25-90
+49                <action android:name="android.intent.action.MAIN" />
+49-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:17-69
+49-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:25-66
+50
+51                <category android:name="android.intent.category.LAUNCHER" />
+51-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:17-77
+51-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:27-74
+52            </intent-filter>
+53
+54            <meta-data
+54-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:45:13-47:57
+55                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+55-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:46:17-79
+56                android:resource="@xml/device_filter" />
+56-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:47:17-54
+57            <meta-data
+57-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:49:13-51:60
+58                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+58-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:50:17-82
+59                android:resource="@xml/accessory_filter" />
+59-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:51:17-57
+60        </activity>
+61        <activity
+61-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:55:9-58:52
+62            android:name="com.epson.epos2_printer.DiscoveryActivity"
+62-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:56:13-46
+63            android:label="@string/app_title"
+63-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:57:13-46
+64            android:screenOrientation="portrait" />
+64-->C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:58:13-49
+65        <activity
+65-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+66            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+66-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+67            android:exported="false"
+67-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+68            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+68-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+69
+70        <meta-data
+70-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+71            android:name="com.google.android.gms.version"
+71-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+72            android:value="@integer/google_play_services_version" />
+72-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+73    </application>
+74
+75</manifest>

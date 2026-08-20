@@ -1,0 +1,154 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Najčastejšie otázky"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"/>
+
+        <!-- ================= INTERNET ================= -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INTERNET"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp"/>
+
+        <!-- WIFI -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#222222"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/q_wifi_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WiFi je oranžová alebo nefunguje"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/q_wifi_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oranžová znamená, že zariadenie je pripojené na WiFi, ale nesedí názov siete v nastaveniach. Červená = nie je pripojené."
+                android:textColor="#CCCCCC"
+                android:visibility="gone"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+        <!-- ================= APLIKÁCIA ================= -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="APLIKÁCIA"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <!-- APP -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#222222"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/q_app_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aplikácia nereaguje"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/q_app_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skús reštartovať aplikáciu. Ak problém pretrváva, skontroluj internet a Raspberry server."
+                android:textColor="#CCCCCC"
+                android:visibility="gone"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+        <!-- ================= TLAČ ================= -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TLAČ"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <!-- PRINTER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#222222"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/q_print_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tlač nefunguje"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/q_print_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skontroluj stav tlačiarne (červená/oranžová/zelená). Skontroluj IP adresu v nastaveniach."
+                android:textColor="#CCCCCC"
+                android:visibility="gone"
+                android:paddingTop="8dp"/>
+        </LinearLayout>
+
+        <!-- ================= CONTACT ================= -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#444444"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nenašli ste odpoveď?"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:paddingBottom="6dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kontakt: info@spinentry.sk"
+            android:textColor="#00C853"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+</ScrollView>

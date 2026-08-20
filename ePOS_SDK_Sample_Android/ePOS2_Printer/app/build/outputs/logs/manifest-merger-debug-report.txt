@@ -1,0 +1,214 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\09635f90a4d48363f1cf3655dd690e0d\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\b924fdfc9d25a8311664932561634045\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\3f2b1c2a12ad3708ee38ecfcae107587\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\bda813d22b684c12380f9a50cbb50185\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\35e0eb77316691ffd7f57f75c1dd10cb\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\301f2ca189e27b0a2290f5e2ce16a007\transformed\lifecycle-runtime-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\cf95105a34bcf39cea49811785c68e5d\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ecb206017b8c0f2e4d02e980cda3e6cf\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ad6a87f05737db51c70062303ff412a8\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ffe23e73c0f9e3a52e5589e429c29ef5\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:5-75
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:22-73
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:5-78
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:5-11:57
+	android:usesPermissionFlags
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:11:9-55
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:22-70
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:5-75
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:22-73
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:5-16:37
+	android:maxSdkVersion
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:16:9-35
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:5-18:37
+	android:maxSdkVersion
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:18:9-35
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:22-71
+application
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-60:19
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-60:19
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:6:5-20
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:4:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:5:5-7:19
+MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:23:9-41
+	android:icon
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:22:9-43
+	android:allowBackup
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:21:9-35
+	android:theme
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:24:9-40
+	android:networkSecurityConfig
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:25:9-69
+activity#com.epson.epos2_printer.SettingsActivity
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:9-54
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:19-51
+activity#com.epson.epos2_printer.HelpActivity
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:9-50
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:19-47
+activity#com.epson.epos2_printer.TicketsActivity
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:9-53
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:19-50
+activity#com.epson.epos2_printer.MainActivity
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:31:9-53:20
+	android:screenOrientation
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:34:13-49
+	android:label
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:33:13-46
+	android:exported
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:35:13-36
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:32:13-41
+intent-filter#action:name:android.hardware.usb.action.USB_ACCESSORY_ATTACHED+action:name:android.hardware.usb.action.USB_DEVICE_ATTACHED+action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:37:13-43:29
+action#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:17-90
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:25-87
+action#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:17-93
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:25-90
+action#android.intent.action.MAIN
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:17-77
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:27-74
+meta-data#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:45:13-47:57
+	android:resource
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:47:17-54
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:46:17-79
+meta-data#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:49:13-51:60
+	android:resource
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:51:17-57
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:50:17-82
+activity#com.epson.epos2_printer.DiscoveryActivity
+ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:55:9-58:52
+	android:screenOrientation
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:58:13-49
+	android:label
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:57:13-46
+	android:name
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:56:13-46
+uses-sdk
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\09635f90a4d48363f1cf3655dd690e0d\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\09635f90a4d48363f1cf3655dd690e0d\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\b924fdfc9d25a8311664932561634045\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\b924fdfc9d25a8311664932561634045\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\3f2b1c2a12ad3708ee38ecfcae107587\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\3f2b1c2a12ad3708ee38ecfcae107587\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\bda813d22b684c12380f9a50cbb50185\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\bda813d22b684c12380f9a50cbb50185\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\35e0eb77316691ffd7f57f75c1dd10cb\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\35e0eb77316691ffd7f57f75c1dd10cb\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\301f2ca189e27b0a2290f5e2ce16a007\transformed\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\301f2ca189e27b0a2290f5e2ce16a007\transformed\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\cf95105a34bcf39cea49811785c68e5d\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\cf95105a34bcf39cea49811785c68e5d\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ecb206017b8c0f2e4d02e980cda3e6cf\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ecb206017b8c0f2e4d02e980cda3e6cf\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ad6a87f05737db51c70062303ff412a8\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ad6a87f05737db51c70062303ff412a8\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ffe23e73c0f9e3a52e5589e429c29ef5\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ffe23e73c0f9e3a52e5589e429c29ef5\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:6:20-65

@@ -1,0 +1,10 @@
+com.epson.epos2_printer.app-jetified-play-services-basement-18.4.0-0 C:\Users\11pat\.gradle\caches\8.14.5\transforms\0c63b83608038d2c6456a1696655b209\transformed\jetified-play-services-basement-18.4.0\res
+com.epson.epos2_printer.app-core-1.2.0-1 C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\res
+com.epson.epos2_printer.app-jetified-play-services-base-18.5.0-2 C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\res
+com.epson.epos2_printer.app-pngs-3 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\build\generated\res\pngs\debug
+com.epson.epos2_printer.app-resValues-4 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\build\generated\res\resValues\debug
+com.epson.epos2_printer.app-mergeDebugResources-5 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.epson.epos2_printer.app-mergeDebugResources-6 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.epson.epos2_printer.app-merged_res-7 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\build\intermediates\merged_res\debug
+com.epson.epos2_printer.app-debug-8 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\debug\res
+com.epson.epos2_printer.app-main-9 C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\res
