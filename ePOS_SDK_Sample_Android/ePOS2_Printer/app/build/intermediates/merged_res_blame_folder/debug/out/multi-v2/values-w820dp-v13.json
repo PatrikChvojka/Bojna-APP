@@ -4,7 +4,7 @@
             "outputFile": "com.epson.epos2_printer.app-mergeDebugResources-5:/values-w820dp-v13/values-w820dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\ePOS_SDK_Android_v2.36.0\\BojnaTurniket-2-\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "source": "C:\\ePOS_SDK_Android_v2.36.0\\Bojna-APP\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

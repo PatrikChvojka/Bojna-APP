@@ -1,64 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="#111">
+    android:background="#111111"
+    android:orientation="vertical">
 
-    <TextView
-        android:text="Settings"
-        android:textSize="24sp"
-        android:textColor="#FFF"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <include layout="@layout/layout_subpage_header" />
 
-    <Space android:layout_height="20dp" android:layout_width="match_parent"/>
-
-    <EditText
-        android:id="@+id/edtPrinterIp"
-        android:hint="IP tlačiarne"
-        android:textColor="#FFF"
-        android:background="#333"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-    <Space android:layout_height="12dp" android:layout_width="match_parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtRaspberryIp"
-        android:hint="IP Raspberry"
-        android:textColor="#FFF"
-        android:background="#333"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <!-- DEVICES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    <Space android:layout_height="12dp" android:layout_width="match_parent"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Zariadenia"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edtNetworkName"
-        android:hint="Názov siete"
-        android:textColor="#FFF"
-        android:background="#333"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="IP tlačiarne"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp" />
 
-    <Space android:layout_height="12dp" android:layout_width="match_parent"/>
+                <EditText
+                    android:id="@+id/edtPrinterIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_settings"
+                    android:hint="192.168.1.50"
+                    android:inputType="text"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#66FFFFFF"
+                    android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/edtTicketsUrl"
-        android:hint="URL webviewu s lístkami"
-        android:textColor="#FFF"
-        android:background="#333"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="IP Raspberry"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp" />
 
-    <Space android:layout_height="20dp" android:layout_width="match_parent"/>
+                <EditText
+                    android:id="@+id/edtRaspberryIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_settings"
+                    android:hint="192.168.1.20"
+                    android:inputType="text"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#66FFFFFF"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSave"
-        android:text="ULOŽIŤ"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <!-- NETWORK -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sieť"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Názov WiFi"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtNetworkName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_settings"
+                    android:hint="Názov siete"
+                    android:inputType="text"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#66FFFFFF"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- LIVE PREVIEW -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Live preview"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="URL s lístkami"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtTicketsUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_settings"
+                    android:hint="https://www.rancpodbabicou.sk/"
+                    android:inputType="textUri"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#66FFFFFF"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_btn_print_multi"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="ULOŽIŤ"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

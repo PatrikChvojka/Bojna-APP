@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-62:12
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-63:12
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:1-63:12
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\87ecb5e5dea4431e06290fe77ee2532e\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
@@ -22,54 +22,54 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\11pat\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\ffe23e73c0f9e3a52e5589e429c29ef5\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 	package
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:5-66
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:5-66
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:4:22-64
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:5-75
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:5-75
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:22-73
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:6:22-73
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:5-78
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:5-78
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:22-76
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:7:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:5-80
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.BLUETOOTH_SCAN
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:5-11:57
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:5-11:57
 	android:usesPermissionFlags
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:11:9-55
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:11:9-55
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:22-70
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:10:22-70
 uses-permission#android.permission.BLUETOOTH_CONNECT
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:5-75
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:5-75
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:22-73
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:12:22-73
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:5-16:37
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:5-16:37
 	android:maxSdkVersion
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:16:9-35
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:16:9-35
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:22-65
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:15:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:5-18:37
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:5-18:37
 	android:maxSdkVersion
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:18:9-35
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:18:9-35
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:22-71
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:17:22-71
 application
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-60:19
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-60:19
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-61:19
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:20:5-61:19
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:6:5-20
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:6:5-20
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:4:5-6:19
@@ -83,83 +83,85 @@ MERGED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\tran
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\4c40fa1f6a5d312386d90e1173e20b93\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.2.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\479df39e0c397b24a912b3b7c8c5361b\transformed\core-1.2.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:23:9-41
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:24:9-41
+	android:roundIcon
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:23:9-48
 	android:icon
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:22:9-43
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:22:9-43
 	android:allowBackup
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:21:9-35
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:21:9-35
 	android:theme
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:24:9-40
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:25:9-40
 	android:networkSecurityConfig
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:25:9-69
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:26:9-69
 activity#com.epson.epos2_printer.SettingsActivity
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:9-54
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:9-54
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:27:19-51
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:19-51
 activity#com.epson.epos2_printer.HelpActivity
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:9-50
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:9-50
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:28:19-47
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:19-47
 activity#com.epson.epos2_printer.TicketsActivity
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:9-53
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:30:9-53
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:29:19-50
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:30:19-50
 activity#com.epson.epos2_printer.MainActivity
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:31:9-53:20
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:32:9-54:20
 	android:screenOrientation
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:34:13-49
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:35:13-49
 	android:label
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:33:13-46
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:34:13-46
 	android:exported
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:35:13-36
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:36:13-36
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:32:13-41
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:33:13-41
 intent-filter#action:name:android.hardware.usb.action.USB_ACCESSORY_ATTACHED+action:name:android.hardware.usb.action.USB_DEVICE_ATTACHED+action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:37:13-43:29
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:13-44:29
 action#android.hardware.usb.action.USB_DEVICE_ATTACHED
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:17-90
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:17-90
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:38:25-87
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:25-87
 action#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:17-93
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:17-93
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:39:25-90
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:25-90
 action#android.intent.action.MAIN
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:17-69
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:41:17-69
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:40:25-66
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:41:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:17-77
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:43:17-77
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:42:27-74
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:43:27-74
 meta-data#android.hardware.usb.action.USB_DEVICE_ATTACHED
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:45:13-47:57
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:46:13-48:57
 	android:resource
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:47:17-54
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:48:17-54
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:46:17-79
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:47:17-79
 meta-data#android.hardware.usb.action.USB_ACCESSORY_ATTACHED
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:49:13-51:60
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:50:13-52:60
 	android:resource
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:51:17-57
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:52:17-57
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:50:17-82
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:51:17-82
 activity#com.epson.epos2_printer.DiscoveryActivity
-ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:55:9-58:52
+ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:56:9-59:52
 	android:screenOrientation
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:58:13-49
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:59:13-49
 	android:label
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:57:13-46
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:58:13-46
 	android:name
-		ADDED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:56:13-46
+		ADDED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml:57:13-46
 uses-sdk
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
-INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:4:5-44
 MERGED from [com.google.android.gms:play-services-location:21.3.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\c38c83596e06746526f8f851c68d936f\transformed\jetified-play-services-location-21.3.0\AndroidManifest.xml:4:5-44
 MERGED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:3:5-44
@@ -195,9 +197,9 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\11pat\.g
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\6f4a741d629bd2011cdc2f44de229be8\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 	android:targetSdkVersion
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\ePOS_SDK_Android_v2.36.0\BojnaTurniket-2-\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
+		INJECTED from C:\ePOS_SDK_Android_v2.36.0\Bojna-APP\ePOS_SDK_Sample_Android\ePOS2_Printer\app\src\main\AndroidManifest.xml
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.5.0] C:\Users\11pat\.gradle\caches\8.14.5\transforms\9d4fcb3577150793c640d50c40c3e37e\transformed\jetified-play-services-base-18.5.0\AndroidManifest.xml:5:9-173
 	android:exported

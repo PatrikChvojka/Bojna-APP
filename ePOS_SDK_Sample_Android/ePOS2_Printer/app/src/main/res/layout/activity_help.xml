@@ -1,154 +1,472 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#111111"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/layout_subpage_header" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-        <!-- TITLE -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Najčastejšie otázky"
-            android:textSize="22sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:paddingBottom="16dp"/>
-
-        <!-- ================= INTERNET ================= -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="INTERNET"
-            android:textColor="#00C853"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
-            android:paddingBottom="8dp"/>
-
-        <!-- WIFI -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#222222"
-            android:padding="12dp">
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/q_wifi_title"
+            <!-- STAVOVÉ IKONKY -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="WiFi je oranžová alebo nefunguje"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/q_wifi_content"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stavové ikonky"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_colors_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Čo znamenajú zelená, oranžová a červená?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_colors_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Hore v lište sú tri bodky: Printer, Raspberry a WiFi.\n\nZelená = všetko je v poriadku.\nOranžová = niečo nie je nastavené, alebo tablet je na inej sieti.\nČervená = zariadenie nie je dostupné, treba to riešiť hneď.\n\nTlačiareň má len zelenú alebo červenú. Raspberry a WiFi môžu byť aj oranžové."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_printer_red_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Printer je červený"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_printer_red_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Tlačiareň nie je online. Skontrolujte:\n\n1. Či je tlačiareň zapnutá.\n2. Či je na rovnakej WiFi ako tablet.\n3. Či sedí IP tlačiarne v Nastaveniach.\n4. Či nie je otvorený kryt a či má papier.\n5. Spodné okno Warnings — hlášky OFFLINE alebo NO CONNECTION."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_rasp_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Raspberry je oranžové alebo červené"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_rasp_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Oranžová: v Nastaveniach nie je vyplnená IP Raspberry. Bez nej sa lístok nevytlačí, lebo QR kód sa musí najprv odoslať na server.\n\nČervená: IP je vyplnená, ale tablet sa na Raspberry nevie pripojiť. Skontrolujte, či Raspberry beží, či je na rovnakej WiFi a či sedí IP adresa."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_wifi_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="WiFi je oranžová alebo červená"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_wifi_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Oranžová: názov siete v Nastaveniach je prázdny, tablet ešte nevie zistiť SSID, alebo je pripojený na inú WiFi ako tú, ktorá je uložená v nastaveniach.\n\nČervená: tablet nemá WiFi pripojenie. Zapnite WiFi a pripojte sa na správnu sieť.\n\nNázov siete musí byť presne taký, ako ho vidí tablet. Po vyplnení ho uložte v Nastaveniach."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- TLAČ -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Oranžová znamená, že zariadenie je pripojené na WiFi, ale nesedí názov siete v nastaveniach. Červená = nie je pripojené."
-                android:textColor="#CCCCCC"
-                android:visibility="gone"
-                android:paddingTop="8dp"/>
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tlač"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_print_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Lístok sa netlačí"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_print_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Prejdite tento checklist:\n\n1. Je v tlačiarni papier / kotúč lístkov?\n2. Je kryt tlačiarne zatvorený?\n3. Je Printer hore zelený?\n4. Je Raspberry zelené? Bez servera sa lístok netlačí.\n5. Je WiFi zelená?\n6. Pozrite spodné okno Warnings: NO PAPER, COVER OPEN, OFFLINE, NO CONNECTION, alebo chyba Raspberry.\n7. V Nastaveniach skontrolujte IP tlačiarne a IP Raspberry."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_paper_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Warnings ukazuje NO PAPER alebo COVER OPEN"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_paper_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="NO PAPER: v tlačiarni došiel papier. Vložte nový kotúč správnym smerom a zatvorte kryt.\n\nCOVER OPEN: kryt tlačiarne je otvorený. Zatvorte ho, kým nezacvakne.\n\nOFFLINE / NO CONNECTION: tlačiareň neodpovedá. Skontrolujte napájanie, kábel/WiFi a IP v Nastaveniach."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_print_green_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Printer je zelený, ale lístok nevyšiel"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_print_green_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Aplikácia najprv odošle QR kód na Raspberry a až potom tlačí. Ak Raspberry neodpovie, lístok sa nevytlačí aj keď je tlačiareň v poriadku.\n\nPozrite Warnings na Raspberry ERROR alebo Raspberry CONNECT ERROR. Potom skontrolujte, či Raspberry beží a či sedí jeho IP."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- VSTUP -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vstup a lístky"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_vstup_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Ako vytlačiť vstupný lístok?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_vstup_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Na hlavnej obrazovke stlačte zelené tlačidlo VSTUP.\n\nAplikácia vygeneruje QR kód, odošle ho na Raspberry a vytlačí lístok. Návštevník ho priloží k čítačke na turnikete.\n\nPred tlačou môžete plusom, mínusom alebo klávesnicou nastaviť počet vstupov na jeden lístok. Predvolená hodnota je 1."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_uses_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Na čo je počet vstupov?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_uses_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Číslo pod tlačidlom VSTUP určuje, koľkokrát sa ten istý QR kód môže použiť na turnikete.\n\n1 = jednorazový vstup.\nNapríklad 4 = jeden lístok pre štyri prechody.\n\nNa vytlačenom lístku je platnosť uvedená aj textom."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_qr_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="QR kód na turnikete nefunguje"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_qr_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Lístok musí byť najprv uložený na Raspberry. Ak bola bodka Raspberry červená alebo pri tlači vyšla chyba, kód na serveri nie je.\n\nSkontrolujte, či QR nie je už použitý, či má ešte voľné vstupy a či je čítačka turniketu v poriadku. Pri opakovanom probléme overte Raspberry a sieť."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- OSTATNÉ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ostatné"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_preview_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Live preview / lístky sa nenačítajú"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_preview_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Ikona hore vpravo otvára webovú stránku z Nastavení (URL s lístkami). Ak je pole prázdne, otvorí sa stránka ranča.\n\nAk sa stránka nenačíta, skontrolujte WiFi a či URL začína na http:// alebo https://."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_settings_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Čo treba vyplniť v Nastaveniach?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_settings_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="IP tlačiarne — adresa Epson tlačiarne v sieti.\nIP Raspberry — server, kam sa posiela QR kód.\nNázov WiFi — presný názov siete, na ktorej má tablet byť.\nURL s lístkami — adresa live preview.\n\nPo vyplnení stlačte ULOŽIŤ."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_gates_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Manuálne otvorenie brán"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_gates_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Hlavná brána a brána pre vozičkárov a kočíky slúžia na ručné otvorenie v smere VSTUP alebo VÝSTUP. Netlačia lístok a negenerujú QR.\n\nTáto funkcia sa ešte napojí na Raspberry. Zatiaľ bránu fyzicky neotvorí."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#22FFFFFF" />
+
+                <TextView
+                    android:id="@+id/q_app_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Aplikácia nereaguje"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/q_app_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Zatvorte aplikáciu a otvorte ju znova. Ak to nepomôže, reštartujte tablet.\n\nPotom skontrolujte WiFi, tlačiareň a Raspberry. Stav vidíte hore na bodkách a dole v okne Warnings."
+                    android:textColor="#CCCCCC"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- KONTAKT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card_dark"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kontakt"
+                    android:textColor="#2ECC71"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Nenašli ste odpoveď?"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="info@spinentry.sk"
+                    android:textColor="#2ECC71"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-        <!-- ================= APLIKÁCIA ================= -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="APLIKÁCIA"
-            android:textColor="#00C853"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"/>
-
-        <!-- APP -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#222222"
-            android:padding="12dp">
-
-            <TextView
-                android:id="@+id/q_app_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aplikácia nereaguje"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/q_app_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Skús reštartovať aplikáciu. Ak problém pretrváva, skontroluj internet a Raspberry server."
-                android:textColor="#CCCCCC"
-                android:visibility="gone"
-                android:paddingTop="8dp"/>
-        </LinearLayout>
-
-        <!-- ================= TLAČ ================= -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TLAČ"
-            android:textColor="#00C853"
-            android:textStyle="bold"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"/>
-
-        <!-- PRINTER -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#222222"
-            android:padding="12dp">
-
-            <TextView
-                android:id="@+id/q_print_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tlač nefunguje"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/q_print_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Skontroluj stav tlačiarne (červená/oranžová/zelená). Skontroluj IP adresu v nastaveniach."
-                android:textColor="#CCCCCC"
-                android:visibility="gone"
-                android:paddingTop="8dp"/>
-        </LinearLayout>
-
-        <!-- ================= CONTACT ================= -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#444444"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nenašli ste odpoveď?"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:paddingBottom="6dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kontakt: info@spinentry.sk"
-            android:textColor="#00C853"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

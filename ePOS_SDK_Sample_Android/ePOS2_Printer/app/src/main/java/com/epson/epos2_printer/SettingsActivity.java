@@ -3,7 +3,6 @@ package com.epson.epos2_printer;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class SettingsActivity extends Activity {
@@ -18,11 +17,13 @@ public class SettingsActivity extends Activity {
         edtPrinterIp = findViewById(R.id.edtPrinterIp);
         edtRaspberryIp = findViewById(R.id.edtRaspberryIp);
         edtNetworkName = findViewById(R.id.edtNetworkName);
-        Button btnSave = findViewById(R.id.btnSave);
         edtTicketsUrl = findViewById(R.id.edtTicketsUrl);
+        android.view.View btnSave = findViewById(R.id.btnSave);
 
         loadSettings();
 
+        ((android.widget.TextView) findViewById(R.id.txtPageTitle)).setText("Nastavenia");
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         btnSave.setOnClickListener(v -> saveSettings());
     }
 

@@ -16,8 +16,20 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -52,6 +64,13 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
     private static final int REQUEST_PERMISSION = 100;
     private static final int DISCONNECT_INTERVAL = 500;//millseconds
+    private static final int MIN_MAX_USES = 1;
+    private static final int MAX_MAX_USES = 99999;
+    private static final String RASPBERRY_API_PORT = "3000";
+    private static final String RASPBERRY_QR_PATH = "/api/qr";
+    private static final String RASPBERRY_GATE_PATH = "/api/gate"; // TODO: doplniť keď bude endpoint
+    private static final String GATE_DIRECTION_IN = "in";
+    private static final String GATE_DIRECTION_OUT = "out";
 
     private Context mContext = null;
     public static EditText mEditTarget = null;
@@ -68,6 +87,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     private volatile boolean isPrinting = false;
     private boolean printerStableOk = true;
     private int failCount = 0;
+    private EditText edtMaxUses;
+    private String printerAlert = "";
+    private String actionAlert = "";
 
     private void startStatusPolling() {
         statusRunnable = new Runnable() {
@@ -80,10 +102,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
                             PrinterStatusInfo status = mPrinter.getStatus();
                             runOnUiThread(() -> dispPrinterWarnings(status));
                         } catch (Exception e) {
-                            runOnUiThread(() -> {
-                                EditText edt = findViewById(R.id.edtWarnings);
-                                edt.setText("STATUS ERROR: " + e.getMessage());
-                            });
+                            runOnUiThread(() -> setPrinterAlert(
+                                    "Nepodarilo sa načítať stav tlačiarne.\n" + e.getMessage()
+                            ));
                         }
                     }).start();
                 }
@@ -100,10 +121,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             try {
                 mPrinter.connect("TCP:192.168.1.50", Printer.PARAM_DEFAULT);
             } catch (Exception e) {
-                runOnUiThread(() -> {
-                    EditText edt = findViewById(R.id.edtWarnings);
-                    edt.setText("CONNECT ERROR: " + e.getMessage());
-                });
+                setActionAlert("Nepodarilo sa pripojiť tlačiareň.\n" + e.getMessage(), false);
             }
         }).start();
     }
@@ -125,14 +143,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
         mProgressIndicator = new ProgressIndicator(mContext);
 
-        int[] target = {
-            R.id.btnSampleReceipt,
-        };
+        edtMaxUses = findViewById(R.id.edtMaxUses);
+        setupMainActions();
 
-        for (int i = 0; i < target.length; i++) {
-            View view = findViewById(target[i]);
-            view.setOnClickListener(this);
-        }
         UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
         HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
 
@@ -183,24 +196,255 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
     @Override
     public void onClick(View v) {
-        Intent intent = null;
+        // Click handling is wired in setupMainActions().
+    }
 
-        switch (v.getId()) {
-            case R.id.btnSampleReceipt:
-                mProgressIndicator.beginProgress(getString(R.string.progress_msg));
-                new Thread(new Runnable() {
-                    public void run() {
-                        if (!runPrintReceiptSequence()) {
-                            mProgressIndicator.endProgress();
-                        }
-                    }
-                }).start();
-                break;
+    private void setupMainActions() {
+        findViewById(R.id.btnVstup).setOnClickListener(v -> startPrintJob(getSelectedMaxUses()));
 
-            default:
-                // Do nothing
-                break;
+        findViewById(R.id.btnQtyMinus).setOnClickListener(v -> changeMaxUses(-1));
+        findViewById(R.id.btnQtyPlus).setOnClickListener(v -> changeMaxUses(1));
+        findViewById(R.id.btnAlert).setOnClickListener(v -> showAlertPopup());
+        setupMaxUsesInput();
+        updateVstupCountLabel(getSelectedMaxUses());
+
+        findViewById(R.id.btnGate1In).setOnClickListener(v -> requestGateOpen("1", GATE_DIRECTION_IN, "Hlavná brána"));
+        findViewById(R.id.btnGate1Out).setOnClickListener(v -> requestGateOpen("1", GATE_DIRECTION_OUT, "Hlavná brána"));
+        findViewById(R.id.btnGate2In).setOnClickListener(v -> requestGateOpen("2", GATE_DIRECTION_IN, "Brána pre vozičkárov a kočíky"));
+        findViewById(R.id.btnGate2Out).setOnClickListener(v -> requestGateOpen("2", GATE_DIRECTION_OUT, "Brána pre vozičkárov a kočíky"));
+    }
+
+    private void setupMaxUsesInput() {
+        edtMaxUses.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateVstupCountLabel(parseMaxUses(s.toString()));
+            }
+        });
+
+        edtMaxUses.setOnEditorActionListener((v, actionId, event) -> {
+            boolean done = actionId == EditorInfo.IME_ACTION_DONE
+                    || actionId == EditorInfo.IME_ACTION_GO
+                    || actionId == EditorInfo.IME_ACTION_NEXT
+                    || (event != null
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                        && event.getAction() == KeyEvent.ACTION_DOWN);
+
+            if (done) {
+                getSelectedMaxUses();
+                hideKeyboard(v);
+                v.clearFocus();
+                return true;
+            }
+            return false;
+        });
+
+        edtMaxUses.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                getSelectedMaxUses();
+            }
+        });
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    private int parseMaxUses(String raw) {
+        if (raw == null || raw.trim().isEmpty()) {
+            return MIN_MAX_USES;
+        }
+
+        try {
+            int value = Integer.parseInt(raw.trim());
+            if (value < MIN_MAX_USES) {
+                return MIN_MAX_USES;
+            }
+            if (value > MAX_MAX_USES) {
+                return MAX_MAX_USES;
+            }
+            return value;
+        } catch (Exception ignored) {
+            return MIN_MAX_USES;
+        }
+    }
+
+    /**
+     * Shared print flow: generate QR, send it to Raspberry with max_uses, then print the ticket.
+     * Call this from any future button that should issue an entry ticket.
+     */
+    private void startPrintJob(final int maxUses) {
+        if (isPrinting) {
+            return;
+        }
+
+        if (printerAlert != null && !printerAlert.trim().isEmpty()) {
+            refreshAlertUi();
+            showAlertPopup();
+            return;
+        }
+
+        mProgressIndicator.beginProgress(getString(R.string.progress_msg));
+        new Thread(() -> {
+            if (!runPrintReceiptSequence(maxUses)) {
+                mProgressIndicator.endProgress();
+            }
+        }).start();
+    }
+
+    private int getSelectedMaxUses() {
+        int clamped = parseMaxUses(edtMaxUses != null ? edtMaxUses.getText().toString() : "");
+
+        if (edtMaxUses != null && !String.valueOf(clamped).equals(edtMaxUses.getText().toString().trim())) {
+            edtMaxUses.setText(String.valueOf(clamped));
+        }
+
+        updateVstupCountLabel(clamped);
+        return clamped;
+    }
+
+    private void changeMaxUses(int delta) {
+        int value = getSelectedMaxUses() + delta;
+        if (value < MIN_MAX_USES) {
+            value = MIN_MAX_USES;
+        }
+        if (value > MAX_MAX_USES) {
+            value = MAX_MAX_USES;
+        }
+        edtMaxUses.setText(String.valueOf(value));
+        updateVstupCountLabel(value);
+    }
+
+    private void updateVstupCountLabel(int maxUses) {
+        android.widget.TextView label = findViewById(R.id.txtVstupCount);
+        if (label == null) {
+            return;
+        }
+        if (maxUses <= 1) {
+            label.setText("1 vstup");
+        } else if (maxUses <= 4) {
+            label.setText(maxUses + " vstupy");
+        } else {
+            label.setText(maxUses + " vstupov");
+        }
+    }
+
+    /**
+     * Manual gate open. Does not print a ticket and does not generate QR.
+     * Raspberry URL/JSON will be filled in when the endpoint is ready.
+     */
+    private void requestGateOpen(final String gateId, final String direction, final String gateName) {
+        new Thread(() -> {
+            String raspberryIp = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
+                    .getString("raspberry_ip", "");
+
+            if (raspberryIp == null || raspberryIp.trim().isEmpty()) {
+                showWarning("ERROR: Raspberry IP nie je nastavená!");
+                return;
+            }
+
+            // TODO: nahradiť path a JSON keď bude Raspberry endpoint hotový.
+            String payload =
+                    "{"
+                            + "\"gate\":\"" + gateId + "\","
+                            + "\"direction\":\"" + direction + "\""
+                            + "}";
+
+            showWarning(gateName + " / " + direction
+                    + " — endpoint ešte nie je nastavený.\n"
+                    + RASPBERRY_GATE_PATH + "\n" + payload);
+
+            // postJsonToRaspberry(raspberryIp.trim(), RASPBERRY_GATE_PATH, payload);
+        }).start();
+    }
+
+    private void showWarning(final String message) {
+        setActionAlert(message, true);
+    }
+
+    private void setActionAlert(final String message, final boolean popup) {
+        runOnUiThread(() -> {
+            actionAlert = message == null ? "" : message.trim();
+            refreshAlertUi();
+            if (popup && !actionAlert.isEmpty()) {
+                showAlertPopup();
+            }
+        });
+    }
+
+    private void setPrinterAlert(String message) {
+        printerAlert = message == null ? "" : message.trim();
+        refreshAlertUi();
+    }
+
+    private String combinedAlert() {
+        StringBuilder sb = new StringBuilder();
+        if (printerAlert != null && !printerAlert.isEmpty()) {
+            sb.append(printerAlert);
+        }
+        if (actionAlert != null && !actionAlert.isEmpty()) {
+            if (sb.length() > 0) {
+                sb.append("\n\n");
+            }
+            sb.append(actionAlert);
+        }
+        return sb.toString().trim();
+    }
+
+    private void refreshAlertUi() {
+        View btn = findViewById(R.id.btnAlert);
+        View scroll = findViewById(R.id.contentScroll);
+        boolean hasError = !combinedAlert().isEmpty();
+
+        if (btn != null) {
+            btn.setVisibility(hasError ? View.VISIBLE : View.GONE);
+        }
+
+        if (scroll != null) {
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) scroll.getLayoutParams();
+            lp.bottomMargin = dp(hasError ? 88 : 16);
+            scroll.setLayoutParams(lp);
+        }
+    }
+
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
+    }
+
+    private void showAlertPopup() {
+        String message = combinedAlert();
+        if (message.isEmpty()) {
+            return;
+        }
+
+        Dialog dialog = new Dialog(this);
+        try {
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        } catch (Exception ignored) {
+        }
+        dialog.setContentView(R.layout.dialog_alert);
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.88);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        TextView txt = dialog.findViewById(R.id.txtAlertMessage);
+        txt.setText(message);
+        dialog.findViewById(R.id.btnAlertClose).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
     private int checkNetworkStatus() {
@@ -379,17 +623,17 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         return sb.toString();
     }
 
-    private boolean runPrintReceiptSequence() {
+    private boolean runPrintReceiptSequence(int maxUses) {
+        if (maxUses < MIN_MAX_USES) {
+            maxUses = MIN_MAX_USES;
+        }
 
         String raspberryIp = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
                 .getString("raspberry_ip", "");
 
         // 1. kontrola IP
         if (raspberryIp == null || raspberryIp.trim().isEmpty()) {
-            runOnUiThread(() -> {
-                EditText edt = findViewById(R.id.edtWarnings);
-                edt.setText("ERROR: Raspberry IP nie je nastavená!");
-            });
+            showWarning("ERROR: Raspberry IP nie je nastavená!");
             return false;
         }
 
@@ -397,12 +641,12 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         String qrCode = generateQrCode();
 
         // 3. vytvor print data (použije ten istý QR)
-        if (!createReceiptData(qrCode)) {
+        if (!createReceiptData(qrCode, maxUses)) {
             return false;
         }
 
-        // 4. odošli na Raspberry (TEN ISTÝ QR)
-        boolean raspberryOk = sendToRaspberry(raspberryIp, qrCode);
+        // 4. odošli na Raspberry (TEN ISTÝ QR + max_uses)
+        boolean raspberryOk = sendToRaspberry(raspberryIp, qrCode, maxUses);
 
         if (!raspberryOk) {
             return false;
@@ -411,83 +655,58 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         // 5. print až po úspechu
         return printData();
     }
-    private boolean sendToRaspberry(String ip, String qrCode) {
+
+    private boolean sendToRaspberry(String ip, String qrCode, int maxUses) {
+        String payload =
+                "{"
+                        + "\"code\":\"" + qrCode + "\","
+                        + "\"source_device\":\"tablet-test\","
+                        + "\"max_uses\":" + maxUses
+                        + "}";
+
+        return postJsonToRaspberry(ip, RASPBERRY_QR_PATH, payload);
+    }
+
+    private boolean postJsonToRaspberry(String ip, String path, String jsonPayload) {
+        java.net.HttpURLConnection conn = null;
 
         try {
-            String urlStr = "http://" + ip + ":3000/api/qr";
-
+            String urlStr = "http://" + ip + ":" + RASPBERRY_API_PORT + path;
             java.net.URL url = new java.net.URL(urlStr);
 
-            java.net.HttpURLConnection conn =
-                    (java.net.HttpURLConnection) url.openConnection();
-
+            conn = (java.net.HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(3000);
             conn.setReadTimeout(3000);
             conn.setDoOutput(true);
-
-            // Authorization
-            conn.setRequestProperty(
-                    "Authorization",
-                    "Bearer spinentry_token_123"
-            );
-
-            conn.setRequestProperty(
-                    "Content-Type",
-                    "application/json; charset=UTF-8"
-            );
-
-            String payload =
-                    "{"
-                            + "\"code\":\"" + qrCode + "\","
-                            + "\"source_device\":\"tablet-test\","
-                            + "\"max_uses\":1"
-                            + "}";
+            conn.setRequestProperty("Authorization", "Bearer spinentry_token_123");
+            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
             java.io.OutputStream os = conn.getOutputStream();
-
-            os.write(
-                    payload.getBytes(
-                            java.nio.charset.StandardCharsets.UTF_8
-                    )
-            );
-
+            os.write(jsonPayload.getBytes(java.nio.charset.StandardCharsets.UTF_8));
             os.flush();
             os.close();
 
             int responseCode = conn.getResponseCode();
-
             if (responseCode != 200 && responseCode != 201) {
-
-                runOnUiThread(() -> {
-                    EditText edt = findViewById(R.id.edtWarnings);
-                    edt.setText(
-                            "Raspberry ERROR: HTTP " + responseCode
-                    );
-                });
-
-                conn.disconnect();
+                showWarning("Raspberry vrátilo chybu HTTP " + responseCode + ".\nSkontrolujte, či server beží a či sedí IP adresa.");
                 return false;
             }
-
-            conn.disconnect();
 
             return true;
 
         } catch (Exception e) {
-
-            runOnUiThread(() -> {
-                EditText edt = findViewById(R.id.edtWarnings);
-                edt.setText(
-                        "Raspberry CONNECT ERROR: " + e.getMessage()
-                );
-            });
-
+            showWarning("Nepodarilo sa spojiť s Raspberry.\n" + e.getMessage());
             return false;
+
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
     }
 
-    private boolean createReceiptData(String qrCode) {
+    private boolean createReceiptData(String qrCode, int maxUses) {
 
         Date now = new Date();
 
@@ -562,8 +781,12 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             textData.append("------------------------------\n");
             textData.append("Tento QR kód použite pre vstup cez turniket.\n");
             textData.append("Priložte ho k čítačke.\n");
-            textData.append("QR kód je neplatný po prvom použití.\n");
-            textData.append("\nPlatnosť: jednorazový vstup\n");
+            if (maxUses <= 1) {
+                textData.append("QR kód je neplatný po prvom použití.\n");
+            } else {
+                textData.append("QR kód platí pre " + maxUses + " prechodov turniketom.\n");
+            }
+            textData.append("\n" + formatEntryValidity(maxUses) + "\n");
             textData.append("\nVstupom súhlasíte  s návštevným poriadkom.\n");
             textData.append("\nĎakujeme, že svojím príspevkom\n");
             textData.append("podporujete OZ POD BABICOU.\n\n");
@@ -582,13 +805,23 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         }
         catch (Exception e) {
             mPrinter.clearCommandBuffer();
-            ShowMsg.showException(e, method, mContext);
+            showWarning("Nepodarilo sa pripraviť lístok na tlač.\n" + e.getMessage());
             return false;
         }
 
         textData = null;
 
         return true;
+    }
+
+    private String formatEntryValidity(int maxUses) {
+        if (maxUses <= 1) {
+            return "Platnosť: jednorazový vstup";
+        }
+        if (maxUses <= 4) {
+            return "Platnosť: " + maxUses + " vstupy";
+        }
+        return "Platnosť: " + maxUses + " vstupov";
     }
 
     private boolean printData() {
@@ -664,7 +897,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             }).start();
 
         } catch (Exception e) {
-            ShowMsg.showException(e, "connect", mContext);
+            showWarning("Nepodarilo sa pripojiť k tlačiarni.\nSkontrolujte, či je zapnutá a či sedí IP adresa.");
             return false;
         }
 
@@ -710,92 +943,65 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         mPrinter.clearCommandBuffer();
     }
 
-    private String makeErrorMessage(PrinterStatusInfo status) {
-        String msg = "";
+    private String buildPrinterAlert(PrinterStatusInfo status) {
+        if (status == null) {
+            return "";
+        }
+
+        StringBuilder msg = new StringBuilder();
 
         if (status.getOnline() == Printer.FALSE) {
-            msg += getString(R.string.handlingmsg_err_offline);
+            msg.append("• Tlačiareň je offline.\n");
         }
         if (status.getConnection() == Printer.FALSE) {
-            msg += getString(R.string.handlingmsg_err_no_response);
+            msg.append("• Tlačiareň neodpovedá. Skontrolujte pripojenie a IP adresu.\n");
         }
         if (status.getCoverOpen() == Printer.TRUE) {
-            msg += getString(R.string.handlingmsg_err_cover_open);
+            msg.append("• Kryt tlačiarne je otvorený. Zatvorte ho.\n");
         }
         if (status.getPaper() == Printer.PAPER_EMPTY) {
-            msg += getString(R.string.handlingmsg_err_receipt_end);
+            msg.append("• V tlačiarni nie je papier. Vložte nový kotúč.\n");
         }
         if (status.getPaperFeed() == Printer.TRUE || status.getPanelSwitch() == Printer.SWITCH_ON) {
-            msg += getString(R.string.handlingmsg_err_paper_feed);
+            msg.append("• Uvoľnite tlačidlo posuvu papiera.\n");
         }
         if (status.getErrorStatus() == Printer.MECHANICAL_ERR || status.getErrorStatus() == Printer.AUTOCUTTER_ERR) {
-            msg += getString(R.string.handlingmsg_err_autocutter);
-            msg += getString(R.string.handlingmsg_err_need_recover);
+            msg.append("• Zaseknutý papier alebo chyba rezačky. Odstráňte papier, zatvorte kryt a reštartujte tlačiareň.\n");
         }
         if (status.getErrorStatus() == Printer.UNRECOVER_ERR) {
-            msg += getString(R.string.handlingmsg_err_unrecover);
+            msg.append("• Závažná chyba tlačiarne. Vypnite ju a znova zapnite.\n");
         }
         if (status.getErrorStatus() == Printer.AUTORECOVER_ERR) {
             if (status.getAutoRecoverError() == Printer.HEAD_OVERHEAT) {
-                msg += getString(R.string.handlingmsg_err_overheat);
-                msg += getString(R.string.handlingmsg_err_head);
+                msg.append("• Tlačová hlava je prehriata. Počkajte, kým zhasne chybová LED.\n");
             }
             if (status.getAutoRecoverError() == Printer.MOTOR_OVERHEAT) {
-                msg += getString(R.string.handlingmsg_err_overheat);
-                msg += getString(R.string.handlingmsg_err_motor);
+                msg.append("• Motor tlačiarne je prehriaty. Počkajte, kým zhasne chybová LED.\n");
             }
             if (status.getAutoRecoverError() == Printer.BATTERY_OVERHEAT) {
-                msg += getString(R.string.handlingmsg_err_overheat);
-                msg += getString(R.string.handlingmsg_err_battery);
+                msg.append("• Batéria tlačiarne je prehriata. Počkajte, kým zhasne chybová LED.\n");
             }
             if (status.getAutoRecoverError() == Printer.WRONG_PAPER) {
-                msg += getString(R.string.handlingmsg_err_wrong_paper);
+                msg.append("• Vložte správny typ kotúča papiera.\n");
             }
         }
         if (status.getBatteryLevel() == Printer.BATTERY_LEVEL_0) {
-            msg += getString(R.string.handlingmsg_err_battery_real_end);
+            msg.append("• Batéria tlačiarne je takmer vybitá. Pripojte napájanie.\n");
         }
         if (status.getRemovalWaiting() == Printer.REMOVAL_WAIT_PAPER) {
-            msg += getString(R.string.handlingmsg_err_wait_removal);
+            msg.append("• Vyberte vytlačený lístok z tlačiarne.\n");
         }
-        if(status.getUnrecoverError() == Printer.HIGH_VOLTAGE_ERR ||
+        if (status.getUnrecoverError() == Printer.HIGH_VOLTAGE_ERR ||
                 status.getUnrecoverError() == Printer.LOW_VOLTAGE_ERR) {
-            msg += getString(R.string.handlingmsg_err_voltage);
+            msg.append("• Skontrolujte napätie tlačiarne.\n");
         }
 
-        return msg;
+        return msg.toString().trim();
     }
 
     private void dispPrinterWarnings(PrinterStatusInfo status) {
-        EditText edtWarnings = (EditText)findViewById(R.id.edtWarnings);
-
-        String warningsMsg = "";
-
-        if (status == null) {
-            warningsMsg = "Printer ready (no status yet)";
-            edtWarnings.setText(warningsMsg);
-            return;
-        }
-
-        if (status.getOnline() == Printer.FALSE) {
-            warningsMsg += "OFFLINE\n";
-        }
-
-        if (status.getConnection() == Printer.FALSE) {
-            warningsMsg += "NO CONNECTION\n";
-        }
-
-        if (status.getCoverOpen() == Printer.TRUE) {
-            warningsMsg += "COVER OPEN\n";
-        }
-
-        if (status.getPaper() == Printer.PAPER_EMPTY) {
-            warningsMsg += "NO PAPER\n";
-        }
-
-        edtWarnings.setText(warningsMsg);
+        setPrinterAlert(buildPrinterAlert(status));
     }
-
 
     @Override
     public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
@@ -803,15 +1009,22 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
             new Thread(() -> disconnectPrinter()).start();
 
-            isPrinting = false; // 🔓 odomkni
+            isPrinting = false;
 
             mProgressIndicator.endProgress();
 
-            if (code != 0) {
-                ShowMsg.showResult(code, makeErrorMessage(status), mContext);
-            }
-
             dispPrinterWarnings(status);
+
+            if (code != 0) {
+                String printError = buildPrinterAlert(status);
+                if (printError.isEmpty()) {
+                    printError = "Tlač lístka zlyhala.";
+                }
+                setActionAlert(printError, true);
+            } else {
+                actionAlert = "";
+                refreshAlertUi();
+            }
         });
     }
 

@@ -3,9 +3,9 @@ package com.epson.epos2_printer;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class TicketsActivity extends Activity {
 
@@ -14,8 +14,10 @@ public class TicketsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tickets);
 
-        WebView webView = findViewById(R.id.webView);
+        ((TextView) findViewById(R.id.txtPageTitle)).setText("Live preview");
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        WebView webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 

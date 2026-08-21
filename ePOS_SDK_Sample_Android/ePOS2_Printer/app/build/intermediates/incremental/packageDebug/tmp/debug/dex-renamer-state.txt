@@ -1,9 +1,9 @@
-#Thu Aug 20 19:41:32 CEST 2026
-base.2=C\:\\ePOS_SDK_Android_v2.36.0\\BojnaTurniket-2-\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+#Fri Aug 21 11:40:00 CEST 2026
+base.2=C\:\\ePOS_SDK_Android_v2.36.0\\Bojna-APP\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
 path.2=15/classes.dex
-base.1=C\:\\ePOS_SDK_Android_v2.36.0\\BojnaTurniket-2-\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.1=C\:\\ePOS_SDK_Android_v2.36.0\\Bojna-APP\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 path.1=0/classes.dex
-base.0=C\:\\ePOS_SDK_Android_v2.36.0\\BojnaTurniket-2-\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.0=C\:\\ePOS_SDK_Android_v2.36.0\\Bojna-APP\\ePOS_SDK_Sample_Android\\ePOS2_Printer\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex

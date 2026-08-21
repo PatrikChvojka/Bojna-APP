@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">ePOS2 Printer</string>
+    <string name="app_name">Bojná ZOO</string>
 
-    <string name="app_title">ePOS2 Printer</string>
+    <string name="app_title">Bojná ZOO</string>
     <string name="btn_discovery">Discovery</string>
     <string name="title_target">Target</string>
     <string name="ipAddress">ipAddress</string>

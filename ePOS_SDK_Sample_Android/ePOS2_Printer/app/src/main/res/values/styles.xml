@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme">
-        <!-- Customize your theme here. -->
+    <!-- Kiosk theme without the leftover Epson title bar. -->
+    <style name="AppTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
