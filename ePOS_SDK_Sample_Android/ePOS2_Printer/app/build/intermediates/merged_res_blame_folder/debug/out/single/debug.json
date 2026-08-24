@@ -80,6 +80,10 @@
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\layout\\activity_printersetting.xml"
     },
     {
+        "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\layout_dialog_alert.xml.flat",
+        "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\layout\\dialog_alert.xml"
+    },
+    {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\layout_activity_multiplemonitor.xml.flat",
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\layout\\activity_multiplemonitor.xml"
     },
@@ -88,12 +92,12 @@
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable\\bg_btn_gate_out.xml"
     },
     {
-        "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable-nodpi_ic_printer_image.png.flat",
-        "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable-nodpi\\ic_printer_image.png"
+        "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable_bg_btn_alert.xml.flat",
+        "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable\\bg_btn_alert.xml"
     },
     {
-        "merged": "com.epson.epos2_printer.app-merged_res-7:/layout_dialog_alert.xml.flat",
-        "source": "com.epson.epos2_printer.app-main-9:/layout/dialog_alert.xml"
+        "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable-nodpi_ic_printer_image.png.flat",
+        "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable-nodpi\\ic_printer_image.png"
     },
     {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable-nodpi_bg_kiosk.jpg.flat",
@@ -104,16 +108,20 @@
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable_bg_dialog_alert.xml.flat",
+        "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable\\bg_dialog_alert.xml"
+    },
+    {
         "merged": "com.epson.epos2_printer.app-merged_res-7:/layout_activity_main.xml.flat",
         "source": "com.epson.epos2_printer.app-main-9:/layout/activity_main.xml"
     },
     {
-        "merged": "com.epson.epos2_printer.app-merged_res-7:/drawable_bg_btn_alert.xml.flat",
-        "source": "com.epson.epos2_printer.app-main-9:/drawable/bg_btn_alert.xml"
-    },
-    {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\layout_activity_printersetting_ex.xml.flat",
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\layout\\activity_printersetting_ex.xml"
+    },
+    {
+        "merged": "com.epson.epos2_printer.app-merged_res-7:/layout_dialog_progress.xml.flat",
+        "source": "com.epson.epos2_printer.app-main-9:/layout/dialog_progress.xml"
     },
     {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\xml_accessory_filter.xml.flat",
@@ -158,10 +166,6 @@
     {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\drawable_bg_input_qty.xml.flat",
         "source": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-main-9:\\drawable\\bg_input_qty.xml"
-    },
-    {
-        "merged": "com.epson.epos2_printer.app-merged_res-7:/drawable_bg_dialog_alert.xml.flat",
-        "source": "com.epson.epos2_printer.app-main-9:/drawable/bg_dialog_alert.xml"
     },
     {
         "merged": "C:\\Users\\11pat\\.gradle\\daemon\\8.14.5\\com.epson.epos2_printer.app-merged_res-7:\\layout_activity_tickets.xml.flat",

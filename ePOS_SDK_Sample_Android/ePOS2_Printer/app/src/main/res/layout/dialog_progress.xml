@@ -13,6 +13,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:visibility="visible"
+        android:indeterminateTint="#FFFFFF"
         style="@android:style/Widget.ProgressBar" />
 
     <TextView
@@ -22,6 +23,9 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
 </LinearLayout>

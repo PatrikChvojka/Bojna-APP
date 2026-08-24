@@ -66,11 +66,16 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     private static final int DISCONNECT_INTERVAL = 500;//millseconds
     private static final int MIN_MAX_USES = 1;
     private static final int MAX_MAX_USES = 99999;
+    private static final int MIN_TICKET_COUNT = 1;
+    private static final int MAX_TICKET_COUNT = 50;
     private static final String RASPBERRY_API_PORT = "3000";
     private static final String RASPBERRY_QR_PATH = "/api/qr";
-    private static final String RASPBERRY_GATE_PATH = "/api/gate"; // TODO: doplniť keď bude endpoint
-    private static final String GATE_DIRECTION_IN = "in";
-    private static final String GATE_DIRECTION_OUT = "out";
+    private static final String RASPBERRY_API_TOKEN = "spinentry_token_123";
+    private static final String RASPBERRY_SOURCE_DEVICE = "tablet_1";
+    private static final String RASPBERRY_RELAY_1_IN = "/api/relay/input-1-in";
+    private static final String RASPBERRY_RELAY_1_OUT = "/api/relay/input-1-out";
+    private static final String RASPBERRY_RELAY_2_IN = "/api/relay/input-2-in";
+    private static final String RASPBERRY_RELAY_2_OUT = "/api/relay/input-2-out";
 
     private Context mContext = null;
     public static EditText mEditTarget = null;
@@ -78,52 +83,266 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     public static ToggleButton mDrawer = null;
     public static ProgressIndicator mProgressIndicator = null;
 
-    private android.os.Handler statusHandler = new android.os.Handler();
-    private Runnable statusRunnable;
+    private android.os.Handler printerWatchHandler = new android.os.Handler();
+    private Runnable printerWatchRunnable;
 
     private android.os.Handler statusUiHandler = new android.os.Handler();
     private Runnable statusUiRunnable;
 
+    private final Object printerLock = new Object();
+    private static final int PRINTER_CONNECT_TIMEOUT_MS = 3000;
+    private static final int PRINTER_RETRY_MS = 400;
+    private static final int PRINTER_WATCH_OK_MS = 4000;
+    private static final int PRINTER_DISCONNECT_WAIT_MS = 2500;
+
     private volatile boolean isPrinting = false;
-    private boolean printerStableOk = true;
-    private int failCount = 0;
+    private volatile boolean isOpeningGate = false;
+    private volatile boolean printerWatchBusy = false;
+    private volatile boolean printerWatchEnabled = false;
+    private int printerFailStreak = 0;
+    private boolean printerStableOk = false;
     private EditText edtMaxUses;
+    private EditText edtTicketCount;
+    private int batchTotal = 1;
+    private int batchCurrent = 1;
+    private int batchMaxUses = 1;
+    private boolean batchMode = false;
     private String printerAlert = "";
     private String actionAlert = "";
+    private Bitmap cachedPrintLogo = null;
+    private volatile boolean printerKeepAlive = false;
+    private String connectedPrinterIp = "";
 
-    private void startStatusPolling() {
-        statusRunnable = new Runnable() {
-            @Override
-            public void run() {
-
-                if (!isPrinting && mPrinter != null) {
-                    new Thread(() -> {
-                        try {
-                            PrinterStatusInfo status = mPrinter.getStatus();
-                            runOnUiThread(() -> dispPrinterWarnings(status));
-                        } catch (Exception e) {
-                            runOnUiThread(() -> setPrinterAlert(
-                                    "Nepodarilo sa načítať stav tlačiarne.\n" + e.getMessage()
-                            ));
-                        }
-                    }).start();
-                }
-
-                statusHandler.postDelayed(this, 3000);
-            }
-        };
-
-        statusHandler.post(statusRunnable);
+    private String getPrinterIp() {
+        String ip = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
+                .getString("printer_ip", "192.168.1.50");
+        if (ip == null || ip.trim().isEmpty()) {
+            return "192.168.1.50";
+        }
+        return ip.trim();
     }
 
-    private void connectOnce() {
-        new Thread(() -> {
-            try {
-                mPrinter.connect("TCP:192.168.1.50", Printer.PARAM_DEFAULT);
-            } catch (Exception e) {
-                setActionAlert("Nepodarilo sa pripojiť tlačiareň.\n" + e.getMessage(), false);
+    private boolean ensurePrinterConnected() {
+        synchronized (printerLock) {
+            if (mPrinter == null) {
+                return false;
             }
-        }).start();
+            String ip = getPrinterIp();
+            if (printerKeepAlive && ip.equals(connectedPrinterIp)) {
+                return true;
+            }
+            if (printerKeepAlive && !ip.equals(connectedPrinterIp)) {
+                quietDisconnectLocked();
+            }
+            try {
+                mPrinter.connect("TCP:" + ip, PRINTER_CONNECT_TIMEOUT_MS);
+                markPrinterConnected(ip);
+                return true;
+            } catch (Exception e) {
+                if (e instanceof Epos2Exception
+                        && ((Epos2Exception) e).getErrorStatus() == Epos2Exception.ERR_ILLEGAL) {
+                    markPrinterConnected(ip);
+                    return true;
+                }
+                quietDisconnectLocked();
+                printerKeepAlive = false;
+                printerStableOk = false;
+                connectedPrinterIp = "";
+                android.util.Log.w("PRINTER", "ensurePrinterConnected: " + e.getMessage());
+                return false;
+            }
+        }
+    }
+
+    private void markPrinterConnected(String ip) {
+        printerKeepAlive = true;
+        printerStableOk = true;
+        connectedPrinterIp = ip;
+    }
+
+    private void refreshPrinterHardwareStatus() {
+        synchronized (printerLock) {
+            if (mPrinter == null || !printerKeepAlive || isPrinting) {
+                return;
+            }
+            try {
+                PrinterStatusInfo status = mPrinter.getStatus();
+                if (status == null) {
+                    return;
+                }
+                if (status.getConnection() != Printer.TRUE) {
+                    android.util.Log.w("PRINTER", "getStatus connection=false, keep alive");
+                } else {
+                    printerKeepAlive = true;
+                    printerStableOk = true;
+                }
+                runOnUiThread(() -> dispPrinterWarnings(status));
+            } catch (Exception e) {
+                android.util.Log.w("PRINTER", "getStatus: " + e.getMessage());
+            }
+        }
+    }
+
+    private void startPrinterWatchdog() {
+        printerWatchEnabled = true;
+        if (printerWatchRunnable == null) {
+            printerWatchRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (!printerWatchEnabled) {
+                        return;
+                    }
+                    if (printerWatchBusy) {
+                        printerWatchHandler.postDelayed(this, 200);
+                        return;
+                    }
+                    printerWatchBusy = true;
+                    new Thread(() -> {
+                        boolean connected = printerKeepAlive;
+                        boolean reachable = printerKeepAlive;
+                        try {
+                            if (printerWatchEnabled && !isPrinting) {
+                                boolean alreadyConnected = printerKeepAlive;
+                                connected = ensurePrinterConnected();
+                                if (!printerWatchEnabled) {
+                                    quietDisconnect();
+                                    connected = false;
+                                    reachable = false;
+                                } else if (connected && alreadyConnected) {
+                                    refreshPrinterHardwareStatus();
+                                    connected = printerKeepAlive;
+                                    reachable = connected;
+                                } else if (connected) {
+                                    reachable = true;
+                                } else {
+                                    reachable = isPrinterReachable();
+                                }
+                            }
+                        } finally {
+                            printerWatchBusy = false;
+                        }
+                        final boolean ok = connected && printerWatchEnabled;
+                        final boolean online = reachable && printerWatchEnabled;
+                        runOnUiThread(() -> {
+                            if (ok) {
+                                printerFailStreak = 0;
+                            } else if (!online) {
+                                printerFailStreak++;
+                            }
+                            updatePrinterDot(ok, online);
+                            if (printerWatchEnabled && printerWatchRunnable != null) {
+                                printerWatchHandler.postDelayed(
+                                        printerWatchRunnable,
+                                        ok ? PRINTER_WATCH_OK_MS : PRINTER_RETRY_MS
+                                );
+                            }
+                        });
+                    }, "printer-watch").start();
+                }
+            };
+        }
+        printerWatchHandler.removeCallbacks(printerWatchRunnable);
+        printerWatchHandler.post(printerWatchRunnable);
+    }
+
+    private void stopPrinterWatchdog() {
+        printerWatchEnabled = false;
+        if (printerWatchRunnable != null) {
+            printerWatchHandler.removeCallbacks(printerWatchRunnable);
+        }
+    }
+
+    private void updatePrinterDot(boolean connected, boolean reachable) {
+        View printerDot = findViewById(R.id.statusPrinterDot);
+        if (printerDot == null) {
+            return;
+        }
+        if (connected) {
+            printerDot.setBackgroundColor(0xFF00C853);
+        } else if (reachable || printerFailStreak < 8) {
+            printerDot.setBackgroundColor(0xFFFFA000);
+        } else {
+            printerDot.setBackgroundColor(0xFFD50000);
+        }
+    }
+
+    private boolean isPrinterReachable() {
+        String ip = getPrinterIp();
+        int[] ports = {9100, 8008, 80};
+        for (int port : ports) {
+            java.net.Socket socket = null;
+            try {
+                socket = new java.net.Socket();
+                socket.connect(new java.net.InetSocketAddress(ip, port), 800);
+                return true;
+            } catch (Exception ignored) {
+            } finally {
+                if (socket != null) {
+                    try {
+                        socket.close();
+                    } catch (Exception ignored) {
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void quietDisconnect() {
+        synchronized (printerLock) {
+            quietDisconnectLocked();
+        }
+    }
+
+    private void disconnectAndWait() {
+        Thread t = new Thread(() -> {
+            synchronized (printerLock) {
+                quietDisconnectLocked();
+            }
+        }, "printer-disconnect");
+        t.start();
+        try {
+            t.join(PRINTER_DISCONNECT_WAIT_MS);
+        } catch (InterruptedException ignored) {
+        }
+    }
+
+    private void quietDisconnectLocked() {
+        boolean wasConnected = printerKeepAlive;
+        printerKeepAlive = false;
+        printerStableOk = false;
+        connectedPrinterIp = "";
+        if (mPrinter == null) {
+            return;
+        }
+        boolean disconnected = false;
+        for (int i = 0; i < 6; i++) {
+            try {
+                mPrinter.disconnect();
+                disconnected = true;
+                break;
+            } catch (Exception e) {
+                if (e instanceof Epos2Exception
+                        && ((Epos2Exception) e).getErrorStatus() == Epos2Exception.ERR_PROCESSING) {
+                    try {
+                        Thread.sleep(DISCONNECT_INTERVAL);
+                    } catch (Exception ignored) {
+                    }
+                    continue;
+                }
+                break;
+            }
+        }
+        try {
+            mPrinter.clearCommandBuffer();
+        } catch (Exception ignored) {
+        }
+        if (disconnected || wasConnected) {
+            try {
+                Thread.sleep(400);
+            } catch (Exception ignored) {
+            }
+        }
     }
 
     @Override
@@ -144,6 +363,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         mProgressIndicator = new ProgressIndicator(mContext);
 
         edtMaxUses = findViewById(R.id.edtMaxUses);
+        edtTicketCount = findViewById(R.id.edtTicketCount);
         setupMainActions();
 
         UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
@@ -158,11 +378,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             ShowMsg.showException(e, "setLogSettings", mContext);
         }
 
-        // 👉 DOPLŇ TOTO
-        connectOnce();
-        startStatusPolling();
-
-        // settings icon
         findViewById(R.id.btnSettings).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
@@ -188,9 +403,33 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        startPrinterWatchdog();
+    }
+
+    @Override
+    protected void onStop() {
+        if (!isPrinting) {
+            stopPrinterWatchdog();
+            disconnectAndWait();
+        }
+        super.onStop();
+    }
+
+    @Override
     protected void onDestroy() {
-        statusHandler.removeCallbacks(statusRunnable);
-        finalizeObject();
+        stopPrinterWatchdog();
+        if (statusUiRunnable != null) {
+            statusUiHandler.removeCallbacks(statusUiRunnable);
+        }
+        disconnectAndWait();
+        synchronized (printerLock) {
+            if (mPrinter != null) {
+                mPrinter.setReceiveEventListener(null);
+                mPrinter = null;
+            }
+        }
         super.onDestroy();
     }
 
@@ -204,14 +443,22 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
         findViewById(R.id.btnQtyMinus).setOnClickListener(v -> changeMaxUses(-1));
         findViewById(R.id.btnQtyPlus).setOnClickListener(v -> changeMaxUses(1));
+        findViewById(R.id.btnTicketMinus).setOnClickListener(v -> changeTicketCount(-1));
+        findViewById(R.id.btnTicketPlus).setOnClickListener(v -> changeTicketCount(1));
+        findViewById(R.id.btnPrintBatch).setOnClickListener(v ->
+                startPrintBatch(getSelectedTicketCount(), getSelectedMaxUses(), true));
         findViewById(R.id.btnAlert).setOnClickListener(v -> showAlertPopup());
         setupMaxUsesInput();
-        updateVstupCountLabel(getSelectedMaxUses());
+        setupTicketCountInput();
 
-        findViewById(R.id.btnGate1In).setOnClickListener(v -> requestGateOpen("1", GATE_DIRECTION_IN, "Hlavná brána"));
-        findViewById(R.id.btnGate1Out).setOnClickListener(v -> requestGateOpen("1", GATE_DIRECTION_OUT, "Hlavná brána"));
-        findViewById(R.id.btnGate2In).setOnClickListener(v -> requestGateOpen("2", GATE_DIRECTION_IN, "Brána pre vozičkárov a kočíky"));
-        findViewById(R.id.btnGate2Out).setOnClickListener(v -> requestGateOpen("2", GATE_DIRECTION_OUT, "Brána pre vozičkárov a kočíky"));
+        findViewById(R.id.btnGate1In).setOnClickListener(v ->
+                requestGateOpen(RASPBERRY_RELAY_1_IN, "Hlavná brána — VSTUP"));
+        findViewById(R.id.btnGate1Out).setOnClickListener(v ->
+                requestGateOpen(RASPBERRY_RELAY_1_OUT, "Hlavná brána — VÝSTUP"));
+        findViewById(R.id.btnGate2In).setOnClickListener(v ->
+                requestGateOpen(RASPBERRY_RELAY_2_IN, "Brána pre vozičkárov a kočíky — VSTUP"));
+        findViewById(R.id.btnGate2Out).setOnClickListener(v ->
+                requestGateOpen(RASPBERRY_RELAY_2_OUT, "Brána pre vozičkárov a kočíky — VÝSTUP"));
     }
 
     private void setupMaxUsesInput() {
@@ -226,7 +473,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
             @Override
             public void afterTextChanged(Editable s) {
-                updateVstupCountLabel(parseMaxUses(s.toString()));
             }
         });
 
@@ -254,6 +500,31 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         });
     }
 
+    private void setupTicketCountInput() {
+        edtTicketCount.setOnEditorActionListener((v, actionId, event) -> {
+            boolean done = actionId == EditorInfo.IME_ACTION_DONE
+                    || actionId == EditorInfo.IME_ACTION_GO
+                    || actionId == EditorInfo.IME_ACTION_NEXT
+                    || (event != null
+                        && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                        && event.getAction() == KeyEvent.ACTION_DOWN);
+
+            if (done) {
+                getSelectedTicketCount();
+                hideKeyboard(v);
+                v.clearFocus();
+                return true;
+            }
+            return false;
+        });
+
+        edtTicketCount.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                getSelectedTicketCount();
+            }
+        });
+    }
+
     private void hideKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
@@ -262,21 +533,25 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     }
 
     private int parseMaxUses(String raw) {
+        return parseClamped(raw, MIN_MAX_USES, MAX_MAX_USES);
+    }
+
+    private int parseClamped(String raw, int min, int max) {
         if (raw == null || raw.trim().isEmpty()) {
-            return MIN_MAX_USES;
+            return min;
         }
 
         try {
             int value = Integer.parseInt(raw.trim());
-            if (value < MIN_MAX_USES) {
-                return MIN_MAX_USES;
+            if (value < min) {
+                return min;
             }
-            if (value > MAX_MAX_USES) {
-                return MAX_MAX_USES;
+            if (value > max) {
+                return max;
             }
             return value;
         } catch (Exception ignored) {
-            return MIN_MAX_USES;
+            return min;
         }
     }
 
@@ -285,6 +560,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
      * Call this from any future button that should issue an entry ticket.
      */
     private void startPrintJob(final int maxUses) {
+        startPrintBatch(1, maxUses, false);
+    }
+
+    private void startPrintBatch(int ticketCount, int maxUses, boolean showBatchProgress) {
         if (isPrinting) {
             return;
         }
@@ -295,12 +574,50 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             return;
         }
 
-        mProgressIndicator.beginProgress(getString(R.string.progress_msg));
+        if (ticketCount < MIN_TICKET_COUNT) {
+            ticketCount = MIN_TICKET_COUNT;
+        }
+        if (ticketCount > MAX_TICKET_COUNT) {
+            ticketCount = MAX_TICKET_COUNT;
+        }
+
+        batchTotal = ticketCount;
+        batchCurrent = 1;
+        batchMaxUses = maxUses;
+        batchMode = showBatchProgress || ticketCount > 1;
+        isPrinting = true;
+
+        String msg = batchMode
+                ? getString(R.string.progress_batch, batchCurrent, batchTotal)
+                : getString(R.string.progress_msg);
+        mProgressIndicator.beginProgress(msg);
+        launchCurrentTicketPrint();
+    }
+
+    private void launchCurrentTicketPrint() {
+        final int uses = batchMaxUses;
+        final boolean waitCutter = batchCurrent > 1;
         new Thread(() -> {
-            if (!runPrintReceiptSequence(maxUses)) {
-                mProgressIndicator.endProgress();
+            if (waitCutter) {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException ignored) {
+                }
+            }
+            if (!runPrintReceiptSequence(uses)) {
+                finishPrintBatch();
             }
         }).start();
+    }
+
+    private void finishPrintBatch() {
+        runOnUiThread(() -> {
+            isPrinting = false;
+            batchMode = false;
+            batchTotal = 1;
+            batchCurrent = 1;
+            mProgressIndicator.endProgress();
+        });
     }
 
     private int getSelectedMaxUses() {
@@ -310,7 +627,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             edtMaxUses.setText(String.valueOf(clamped));
         }
 
-        updateVstupCountLabel(clamped);
         return clamped;
     }
 
@@ -323,50 +639,81 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             value = MAX_MAX_USES;
         }
         edtMaxUses.setText(String.valueOf(value));
-        updateVstupCountLabel(value);
     }
 
-    private void updateVstupCountLabel(int maxUses) {
-        android.widget.TextView label = findViewById(R.id.txtVstupCount);
-        if (label == null) {
-            return;
+    private int getSelectedTicketCount() {
+        int clamped = parseClamped(
+                edtTicketCount != null ? edtTicketCount.getText().toString() : "",
+                MIN_TICKET_COUNT,
+                MAX_TICKET_COUNT
+        );
+
+        if (edtTicketCount != null && !String.valueOf(clamped).equals(edtTicketCount.getText().toString().trim())) {
+            edtTicketCount.setText(String.valueOf(clamped));
         }
-        if (maxUses <= 1) {
-            label.setText("1 vstup");
-        } else if (maxUses <= 4) {
-            label.setText(maxUses + " vstupy");
-        } else {
-            label.setText(maxUses + " vstupov");
+
+        return clamped;
+    }
+
+    private void changeTicketCount(int delta) {
+        int value = getSelectedTicketCount() + delta;
+        if (value < MIN_TICKET_COUNT) {
+            value = MIN_TICKET_COUNT;
         }
+        if (value > MAX_TICKET_COUNT) {
+            value = MAX_TICKET_COUNT;
+        }
+        edtTicketCount.setText(String.valueOf(value));
     }
 
     /**
-     * Manual gate open. Does not print a ticket and does not generate QR.
-     * Raspberry URL/JSON will be filled in when the endpoint is ready.
+     * Manual gate open via Raspberry relay pulse. Does not print a ticket and does not generate QR.
      */
-    private void requestGateOpen(final String gateId, final String direction, final String gateName) {
+    private void requestGateOpen(final String path, final String gateName) {
+        if (isOpeningGate) {
+            return;
+        }
+        isOpeningGate = true;
+
         new Thread(() -> {
-            String raspberryIp = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
-                    .getString("raspberry_ip", "");
+            try {
+                String raspberryIp = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE)
+                        .getString("raspberry_ip", "");
 
-            if (raspberryIp == null || raspberryIp.trim().isEmpty()) {
-                showWarning("ERROR: Raspberry IP nie je nastavená!");
-                return;
+                if (raspberryIp == null || raspberryIp.trim().isEmpty()) {
+                    showWarning("Raspberry IP nie je nastavená!");
+                    return;
+                }
+
+                String payload = "{\"source_device\":\"" + RASPBERRY_SOURCE_DEVICE + "\"}";
+                int code = postJsonToRaspberry(raspberryIp.trim(), path, payload, 5000);
+                if (code == 200 || code == 201) {
+                    return;
+                }
+                if (code < 0) {
+                    showWarning("Nepodarilo sa spojiť s Raspberry.\nSkontrolujte IP a či server beží.");
+                    return;
+                }
+                showWarning(gateName + "\n" + relayErrorMessage(code));
+            } finally {
+                isOpeningGate = false;
             }
-
-            // TODO: nahradiť path a JSON keď bude Raspberry endpoint hotový.
-            String payload =
-                    "{"
-                            + "\"gate\":\"" + gateId + "\","
-                            + "\"direction\":\"" + direction + "\""
-                            + "}";
-
-            showWarning(gateName + " / " + direction
-                    + " — endpoint ešte nie je nastavený.\n"
-                    + RASPBERRY_GATE_PATH + "\n" + payload);
-
-            // postJsonToRaspberry(raspberryIp.trim(), RASPBERRY_GATE_PATH, payload);
         }).start();
+    }
+
+    private String relayErrorMessage(int code) {
+        switch (code) {
+            case 401:
+                return "Raspberry odmietlo prístup (401).\nSkontrolujte API token.";
+            case 404:
+                return "Neznáme relé (404).\nEndpoint na Raspberry neexistuje.";
+            case 409:
+                return "Relé je už aktívne.\nPočkajte sekundu a skúste znova.";
+            case 500:
+                return "Ovládanie relé zlyhalo (500).\nSkontrolujte Raspberry a relé modul.";
+            default:
+                return "Raspberry vrátilo chybu HTTP " + code + ".";
+        }
     }
 
     private void showWarning(final String message) {
@@ -505,12 +852,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
                 new Thread(() -> {
 
-                    boolean printerOk = checkPrinterStatus();
                     int raspberryState = checkRaspberryStatus();
                     int networkState = checkNetworkStatus();
 
                     runOnUiThread(() ->
-                            updateStatusUI(printerOk, raspberryState, networkState)
+                            updateStatusUI(raspberryState, networkState)
                     );
 
                 }).start();
@@ -520,35 +866,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         };
 
         statusUiHandler.post(statusUiRunnable);
-    }
-
-    private boolean checkPrinterStatus() {
-        try {
-            if (mPrinter == null) return false;
-
-            PrinterStatusInfo status = mPrinter.getStatus();
-            if (status == null) return false;
-
-            boolean online = status.getOnline() == Printer.TRUE;
-
-            if (online) {
-                failCount = 0;
-                printerStableOk = true;
-            } else {
-                failCount++;
-            }
-
-            // 👉 nepanikár hneď
-            if (failCount >= 3) {
-                printerStableOk = false;
-            }
-
-            return printerStableOk;
-
-        } catch (Exception e) {
-            failCount++;
-            return failCount < 3;
-        }
     }
 
     private int checkRaspberryStatus() {
@@ -581,16 +898,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         }
     }
 
-    private void updateStatusUI(boolean printerOk, int raspState, int netState) {
+    private void updateStatusUI(int raspState, int netState) {
 
-        View printerDot = findViewById(R.id.statusPrinterDot);
         View raspDot = findViewById(R.id.statusRaspberryDot);
         View netDot = findViewById(R.id.statusNetworkDot);
-
-        // 🖨️ printer
-        printerDot.setBackgroundColor(
-                printerOk ? 0xFF00C853 : 0xFFD50000
-        );
 
         // 🍓 raspberry
         if (raspState == 0) {
@@ -640,19 +951,45 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         // 2. GENERUJ QR IBA TU (čerstvý každý print)
         String qrCode = generateQrCode();
 
-        // 3. vytvor print data (použije ten istý QR)
+        // Raspberry ide naraz s prípravou lístka, aby sa nečakalo dvakrát.
+        final String raspberryHost = raspberryIp.trim();
+        final String qrForRaspberry = qrCode;
+        final int usesForRaspberry = maxUses;
+        final boolean[] raspberryOk = {false};
+        Thread raspberryThread = new Thread(() ->
+                raspberryOk[0] = sendToRaspberry(raspberryHost, qrForRaspberry, usesForRaspberry)
+        );
+        raspberryThread.start();
+
         if (!createReceiptData(qrCode, maxUses)) {
+            try {
+                raspberryThread.join(1500);
+            } catch (InterruptedException ignored) {
+            }
             return false;
         }
 
-        // 4. odošli na Raspberry (TEN ISTÝ QR + max_uses)
-        boolean raspberryOk = sendToRaspberry(raspberryIp, qrCode, maxUses);
-
-        if (!raspberryOk) {
+        try {
+            raspberryThread.join(4000);
+        } catch (InterruptedException e) {
+            return false;
+        }
+        if (raspberryThread.isAlive()) {
+            if (mPrinter != null) {
+                mPrinter.clearCommandBuffer();
+            }
+            showWarning("Raspberry neodpovedalo načas.\nSkontrolujte, či server beží.");
             return false;
         }
 
-        // 5. print až po úspechu
+        if (!raspberryOk[0]) {
+            if (mPrinter != null) {
+                mPrinter.clearCommandBuffer();
+            }
+            return false;
+        }
+
+        // 5. print až po úspechu Raspberry
         return printData();
     }
 
@@ -664,10 +1001,19 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
                         + "\"max_uses\":" + maxUses
                         + "}";
 
-        return postJsonToRaspberry(ip, RASPBERRY_QR_PATH, payload);
+        int code = postJsonToRaspberry(ip, RASPBERRY_QR_PATH, payload, 3000);
+        if (code == 200 || code == 201) {
+            return true;
+        }
+        if (code < 0) {
+            showWarning("Nepodarilo sa spojiť s Raspberry.\nSkontrolujte IP a či server beží.");
+            return false;
+        }
+        showWarning("Raspberry vrátilo chybu HTTP " + code + ".\nSkontrolujte, či server beží a či sedí IP adresa.");
+        return false;
     }
 
-    private boolean postJsonToRaspberry(String ip, String path, String jsonPayload) {
+    private int postJsonToRaspberry(String ip, String path, String jsonPayload, int timeoutMs) {
         java.net.HttpURLConnection conn = null;
 
         try {
@@ -676,10 +1022,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
             conn = (java.net.HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
-            conn.setConnectTimeout(3000);
-            conn.setReadTimeout(3000);
+            conn.setConnectTimeout(timeoutMs);
+            conn.setReadTimeout(timeoutMs);
             conn.setDoOutput(true);
-            conn.setRequestProperty("Authorization", "Bearer spinentry_token_123");
+            conn.setRequestProperty("Authorization", "Bearer " + RASPBERRY_API_TOKEN);
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
             java.io.OutputStream os = conn.getOutputStream();
@@ -687,17 +1033,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             os.flush();
             os.close();
 
-            int responseCode = conn.getResponseCode();
-            if (responseCode != 200 && responseCode != 201) {
-                showWarning("Raspberry vrátilo chybu HTTP " + responseCode + ".\nSkontrolujte, či server beží a či sedí IP adresa.");
-                return false;
-            }
-
-            return true;
+            return conn.getResponseCode();
 
         } catch (Exception e) {
-            showWarning("Nepodarilo sa spojiť s Raspberry.\n" + e.getMessage());
-            return false;
+            android.util.Log.w("RASPBERRY", path + ": " + e.getMessage());
+            return -1;
 
         } finally {
             if (conn != null) {
@@ -717,10 +1057,8 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         String currentTime = timeFormat.format(now);
 
         String method = "";
-        Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        Bitmap resizedLogo = getCachedPrintLogo();
         StringBuilder textData = new StringBuilder();
-        final int barcodeWidth = 2;
-        final int barcodeHeight = 100;
 
         if (mPrinter == null) {
             return false;
@@ -732,21 +1070,12 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             mPrinter.addTextAlign(Printer.ALIGN_CENTER);
 
             method = "addImage";
-
-            int maxWidth = 384;
-
-            int newHeight = (int)((double) logoData.getHeight() / logoData.getWidth() * maxWidth);
-
-            Bitmap resizedLogo = Bitmap.createScaledBitmap(logoData, maxWidth, newHeight, false);
-
-            mPrinter.addTextAlign(Printer.ALIGN_CENTER);
-
             mPrinter.addImage(resizedLogo, 0, 0,
                     resizedLogo.getWidth(),
                     resizedLogo.getHeight(),
                     Printer.COLOR_1,
                     Printer.MODE_MONO,
-                    Printer.HALFTONE_DITHER,
+                    Printer.HALFTONE_THRESHOLD,
                     Printer.PARAM_DEFAULT,
                     Printer.COMPRESS_AUTO);
 
@@ -824,24 +1153,35 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
         return "Platnosť: " + maxUses + " vstupov";
     }
 
+    private Bitmap getCachedPrintLogo() {
+        if (cachedPrintLogo != null && !cachedPrintLogo.isRecycled()) {
+            return cachedPrintLogo;
+        }
+        Bitmap logoData = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        int maxWidth = 384;
+        int newHeight = (int) ((double) logoData.getHeight() / logoData.getWidth() * maxWidth);
+        cachedPrintLogo = Bitmap.createScaledBitmap(logoData, maxWidth, newHeight, false);
+        if (logoData != cachedPrintLogo) {
+            logoData.recycle();
+        }
+        return cachedPrintLogo;
+    }
+
     private boolean printData() {
         if (mPrinter == null) {
             return false;
         }
 
-        isPrinting = true; // 🔒 zamkni polling
-
         if (!connectPrinter()) {
             mPrinter.clearCommandBuffer();
-            isPrinting = false;
             return false;
         }
 
         try {
             mPrinter.sendData(Printer.PARAM_DEFAULT);
         } catch (Exception e) {
+            printerKeepAlive = false;
             mPrinter.clearCommandBuffer();
-            isPrinting = false;
             return false;
         }
 
@@ -879,24 +1219,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
             return false;
         }
 
-        try {
-            SharedPreferences prefs = getSharedPreferences("APP_SETTINGS", MODE_PRIVATE);
-            String ip = prefs.getString("printer_ip", "192.168.1.50");
-
-            mPrinter.connect("TCP:" + ip, Printer.PARAM_DEFAULT);
-
-            // 👉 DOPLŇ delay + UI update
-            new Thread(() -> {
-                try {
-                    Thread.sleep(300); // malý delay (dôležité!)
-                } catch (InterruptedException e) {}
-
-                PrinterStatusInfo status = mPrinter.getStatus();
-
-                runOnUiThread(() -> dispPrinterWarnings(status));
-            }).start();
-
-        } catch (Exception e) {
+        if (!ensurePrinterConnected()) {
             showWarning("Nepodarilo sa pripojiť k tlačiarni.\nSkontrolujte, či je zapnutá a či sedí IP adresa.");
             return false;
         }
@@ -905,6 +1228,15 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     }
 
     private void disconnectPrinter() {
+        synchronized (printerLock) {
+            disconnectPrinterLocked();
+        }
+    }
+
+    private void disconnectPrinterLocked() {
+        printerKeepAlive = false;
+        printerStableOk = false;
+        connectedPrinterIp = "";
         if (mPrinter == null) {
             return;
         }
@@ -950,12 +1282,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
 
         StringBuilder msg = new StringBuilder();
 
-        if (status.getOnline() == Printer.FALSE) {
-            msg.append("• Tlačiareň je offline.\n");
-        }
-        if (status.getConnection() == Printer.FALSE) {
-            msg.append("• Tlačiareň neodpovedá. Skontrolujte pripojenie a IP adresu.\n");
-        }
         if (status.getCoverOpen() == Printer.TRUE) {
             msg.append("• Kryt tlačiarne je otvorený. Zatvorte ho.\n");
         }
@@ -1006,12 +1332,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
     @Override
     public void onPtrReceive(final Printer printerObj, final int code, final PrinterStatusInfo status, final String printJobId) {
         runOnUiThread(() -> {
-
-            new Thread(() -> disconnectPrinter()).start();
-
-            isPrinting = false;
-
-            mProgressIndicator.endProgress();
+            if (mPrinter != null) {
+                mPrinter.clearCommandBuffer();
+            }
 
             dispPrinterWarnings(status);
 
@@ -1020,11 +1343,29 @@ public class MainActivity extends Activity implements View.OnClickListener, Rece
                 if (printError.isEmpty()) {
                     printError = "Tlač lístka zlyhala.";
                 }
+                if (batchMode && batchTotal > 1) {
+                    printError = "Tlač lístka " + batchCurrent + " z " + batchTotal + " zlyhala.\n" + printError;
+                }
+                isPrinting = false;
+                batchMode = false;
+                mProgressIndicator.endProgress();
                 setActionAlert(printError, true);
-            } else {
-                actionAlert = "";
-                refreshAlertUi();
+                return;
             }
+
+            if (batchCurrent < batchTotal) {
+                batchCurrent++;
+                mProgressIndicator.changeProgress(
+                        getString(R.string.progress_batch, batchCurrent, batchTotal));
+                launchCurrentTicketPrint();
+                return;
+            }
+
+            isPrinting = false;
+            batchMode = false;
+            mProgressIndicator.endProgress();
+            actionAlert = "";
+            refreshAlertUi();
         });
     }
 

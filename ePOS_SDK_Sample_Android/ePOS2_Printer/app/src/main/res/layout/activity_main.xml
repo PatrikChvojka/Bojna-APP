@@ -34,51 +34,143 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingStart="20dp"
-            android:paddingTop="10dp"
+            android:paddingTop="4dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp">
 
-            <!-- PRINT BUTTON -->
+            <!-- PRINT + GATE BUTTONS -->
             <LinearLayout
-                android:id="@+id/btnVstup"
-                android:layout_width="168dp"
-                android:layout_height="168dp"
-                android:background="@drawable/bg_btn_vstup"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_width="match_parent"
+                android:layout_height="336dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/ic_printer_image" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_dark"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="VSTUP"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Hlavná brána"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtVstupCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="1 vstup"
-                    android:textColor="#E8FFFFFF"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/btnGate1In"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_gate_in"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="VSTUP"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGate1Out"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_gate_out"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="VÝSTUP"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnVstup"
+                    android:layout_width="336dp"
+                    android:layout_height="336dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_btn_vstup"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="32dp">
+
+                    <ImageView
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:src="@drawable/ic_printer_image" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="VSTUP"
+                        android:textColor="#FFFFFF"
+                        android:textSize="44sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_dark"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Vozičkáreň / kočíky"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGate2In"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_gate_in"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="VSTUP"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGate2Out"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_gate_out"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="VÝSTUP"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- ENTRY COUNT -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_card_dark"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -148,108 +240,100 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- GATE CONTROLS -->
+            <!-- BULK TICKET PRINT -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_card_dark"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:paddingStart="12dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="10dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Manuálne otvorenie brán"
+                    android:text="Hromadná tlač lístkov"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Hlavná brána"
+                    android:layout_marginTop="2dp"
+                    android:text="Koľko samostatných lístkov vytlačiť"
                     android:textColor="#CCFFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/btnGate1In"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_gate_in"
+                        android:id="@+id/btnTicketMinus"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_btn_qty"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:text="VSTUP"
-                        android:textColor="#FFFFFF"
+                        android:text="−"
+                        android:textColor="#111111"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edtTicketCount"
+                        android:layout_width="112dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_input_qty"
+                        android:gravity="center"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:selectAllOnFocus="true"
+                        android:text="1"
+                        android:textColor="#111111"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/btnGate1Out"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_gate_out"
+                        android:id="@+id/btnTicketPlus"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_btn_qty"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:text="VÝSTUP"
-                        android:textColor="#FFFFFF"
+                        android:text="+"
+                        android:textColor="#111111"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/btnPrintBatch"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Brána pre vozičkárov a kočíky"
-                    android:textColor="#CCFFFFFF"
-                    android:textSize="12sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/btnGate2In"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_gate_in"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:text="VSTUP"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/btnGate2Out"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_gate_out"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:text="VÝSTUP"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_btn_print_multi"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="TLAČIŤ LÍSTKY"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -287,7 +371,7 @@
                     android:id="@+id/statusPrinterDot"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
-                    android:background="#FF0000" />
+                    android:background="#FFA000" />
 
                 <TextView
                     android:layout_width="wrap_content"

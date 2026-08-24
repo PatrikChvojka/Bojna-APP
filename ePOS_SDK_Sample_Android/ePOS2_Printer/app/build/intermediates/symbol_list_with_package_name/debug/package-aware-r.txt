@@ -170,6 +170,7 @@ id btnGetPrinterSettingEx
 id btnHelp
 id btnMaintenanceCounterPrinterSetting
 id btnMultipleMonitor
+id btnPrintBatch
 id btnPrinterSettingEx
 id btnQtyMinus
 id btnQtyPlus
@@ -187,6 +188,8 @@ id btnStartGetstatus
 id btnStartMonitor
 id btnStopGetstatus
 id btnStopMonitor
+id btnTicketMinus
+id btnTicketPlus
 id btnTickets
 id btnUpdateFirmware
 id btnVerifyPassword
@@ -205,6 +208,7 @@ id edtPrinterPassword
 id edtRaspberryIp
 id edtStatus
 id edtStatusMulti
+id edtTicketCount
 id edtTicketsUrl
 id forever
 id icon
@@ -302,7 +306,6 @@ id txtStatusMulti
 id txtStep1
 id txtStep2
 id txtStep3
-id txtVstupCount
 id webView
 id wide
 integer google_play_services_version
@@ -489,6 +492,7 @@ string printerseries_ts100
 string printerseries_u220
 string printerseries_u220ii
 string printerseries_u330
+string progress_batch
 string progress_msg
 string reconnect_message
 string restart_SettingEx_msg

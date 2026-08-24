@@ -169,6 +169,7 @@ int id btnGetPrinterSettingEx 0x7f05003a
 int id btnHelp 0x7f05003b
 int id btnMaintenanceCounterPrinterSetting 0x7f05003c
 int id btnMultipleMonitor 0x7f05003d
+int id btnPrintBatch 0x7f0500c8
 int id btnPrinterSettingEx 0x7f05003e
 int id btnQtyMinus 0x7f05003f
 int id btnQtyPlus 0x7f050040
@@ -186,6 +187,8 @@ int id btnStartGetstatus 0x7f05004b
 int id btnStartMonitor 0x7f05004c
 int id btnStopGetstatus 0x7f05004d
 int id btnStopMonitor 0x7f05004e
+int id btnTicketMinus 0x7f0500c9
+int id btnTicketPlus 0x7f0500ca
 int id btnTickets 0x7f05004f
 int id btnUpdateFirmware 0x7f050050
 int id btnVerifyPassword 0x7f050051
@@ -204,6 +207,7 @@ int id edtPrinterPassword 0x7f05005c
 int id edtRaspberryIp 0x7f05005d
 int id edtStatus 0x7f05005e
 int id edtStatusMulti 0x7f05005f
+int id edtTicketCount 0x7f0500cb
 int id edtTicketsUrl 0x7f050060
 int id forever 0x7f050062
 int id icon 0x7f050063
@@ -301,7 +305,6 @@ int id txtStatusMulti 0x7f0500bd
 int id txtStep1 0x7f0500be
 int id txtStep2 0x7f0500bf
 int id txtStep3 0x7f0500c0
-int id txtVstupCount 0x7f0500c1
 int id webView 0x7f0500c2
 int id wide 0x7f0500c3
 int integer google_play_services_version 0x7f060000
@@ -488,6 +491,7 @@ int string printerseries_ts100 0x7f09009a
 int string printerseries_u220 0x7f09009b
 int string printerseries_u220ii 0x7f09009c
 int string printerseries_u330 0x7f09009d
+int string progress_batch 0x7f0900bf
 int string progress_msg 0x7f09009e
 int string reconnect_message 0x7f09009f
 int string restart_SettingEx_msg 0x7f0900a0
